@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ('build') {
             steps {
-                sh ' sudo docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .'
+                sh '  docker build -t "$IMAGE:$TAG" -t "$IMAGE:latest" .'
             }
         }
         stage ('push') {
