@@ -11,11 +11,13 @@ pipeline {
             }
         }
         stage ('push') {
-            steps {
-                
-                sh 'echo "$DOCKERHUB_PWD" | docker login -u "shubhambadade07" -p "Djshubham."
+            steps {withCredentials([usernameColonPassword(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+    sh 'echo "$DOCKERHUB_PWD" | docker login -u "shubhambadade07" -p "Djshubham."
                 sh 'docker push "$IMAGE:$TAG"'
                 sh 'docker push "$IMAGE:latest"'
+}
+                
+                
 
                 
             }
